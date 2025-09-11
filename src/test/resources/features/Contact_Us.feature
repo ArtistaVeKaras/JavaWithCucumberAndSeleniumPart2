@@ -1,4 +1,4 @@
-Feature: Webdriver University Contact Us Page
+Feature: Webdriver University - Contact Us Page
 
   Scenario: Verify Contact Us Page
 
