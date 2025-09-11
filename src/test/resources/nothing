@@ -1,0 +1,3 @@
+// Resources
+chromeOptions.addArguments("--remote-allow-origins=*");
+

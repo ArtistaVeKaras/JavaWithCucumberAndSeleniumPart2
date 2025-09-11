@@ -1,16 +1,46 @@
 package stepDefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.time.Duration;
 
 public class Contact_Us_Steps {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    public WebDriver driver;
+
+    @Before
+    public void setUp() {
+        // Setup ChromeDriver using WebDriverManager
+        WebDriverManager.chromedriver().setup();
+        
+        // Configure Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--start-maximized");
+        
+        // Initialize ChromeDriver with options
+        driver = new ChromeDriver(options);
+        
+        // Set implicit wait
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("http://webdriveruniversity.com/Contact-Us/contactus.html");
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     @Given("I navigate to Webdriver University Contact Us Page")
     public void i_navigate_to_webdriver_university_contact_us_page() {
