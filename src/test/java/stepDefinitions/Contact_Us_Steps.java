@@ -7,9 +7,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -35,11 +39,19 @@ public class Contact_Us_Steps {
         driver.get("http://webdriveruniversity.com/Contact-Us/contactus.html");
     }
 
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+//    @After
+//    public void tearDown() {
+//        if (driver != null) {
+//            driver.quit();
+//        }
+//    }
+
+    public String generateRandomInt(int length) {
+        return RandomStringUtils.randomNumeric(length);
+    }
+
+    public String generateRandomString(int length) {
+        return RandomStringUtils.randomAlphabetic(length);
     }
 
     @Given("I navigate to Webdriver University Contact Us Page")
@@ -50,30 +62,38 @@ public class Contact_Us_Steps {
     @When("I enter a unique first name")
     public void i_enter_a_unique_first_name() {
         System.out.println("Entered first name");
+        driver.findElement(By.name("first_name")).sendKeys("FN" + generateRandomInt(5));
     }
 
     @And("I enter a unique last name")
     public void i_enter_a_unique_last_name() {
         System.out.println("Entered last name");
+        driver.findElement(By.name("last_name")).sendKeys("LN" + generateRandomInt(5));
     }
 
     @And("I enter a unique email")
     public void i_enter_a_unique_email() {
         System.out.println("Entered email");
+        driver.findElement(By.name("email")).sendKeys("akiira_flat@gmail.com");
     }
 
     @And("I enter a unique comment")
     public void i_enter_a_unique_comment() {
         System.out.println("Entered comment");
+        driver.findElement(By.name("message")).sendKeys(generateRandomString(20));
     }
 
     @And("I click on Submit button")
     public void i_click_on_submit_button() {
         System.out.println("Clicked submit button");
+        driver.findElement(By.cssSelector("input[value='SUBMIT']")).click();
     }
 
     @Then("I should see a thank you message")
     public void i_should_see_a_thank_you_message() {
         System.out.println("Verified thank you message: ");
+        WebElement thankYouMsg = driver.findElement(By.xpath("//h1"));
+        Assert.assertTrue(thankYouMsg.isDisplayed());
+        Assert.assertEquals(thankYouMsg.getText(), "Thank You for you Message!");
     }
 }

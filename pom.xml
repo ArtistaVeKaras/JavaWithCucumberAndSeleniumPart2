@@ -11,6 +11,8 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Default feature file to run if none specified -->
+		<cucumber.features>**/*.feature</cucumber.features>
 	</properties>
 
 	<dependencies>
@@ -55,6 +57,14 @@
 			<version>5.9.2</version>
 			<scope>test</scope>
 		</dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.18.0</version>
+            </dependency>
+
 	</dependencies>
 
 	<build>
@@ -74,6 +84,9 @@
 				<version>3.1.2</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
+					<systemPropertyVariables>
+						<cucumber.features>${cucumber.features}</cucumber.features>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
