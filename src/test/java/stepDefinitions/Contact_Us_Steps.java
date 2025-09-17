@@ -83,6 +83,27 @@ public class Contact_Us_Steps {
         driver.findElement(By.name("message")).sendKeys(generateRandomString(20));
     }
 
+    @When("I enter a specific first name {word}")
+    public void i_enter_a_specific_first_name(String firstName) {
+        driver.findElement(By.name("first_name")).sendKeys(firstName);
+        System.out.println("Entered first name: " + firstName);
+    }
+    @When("I enter a specific last name {word}")
+    public void i_enter_a_specific_last_name(String lastName) {
+        driver.findElement(By.name("last_name")).sendKeys(lastName);
+        System.out.println("Entered last name: " + lastName);
+    }
+    @When("I enter a specific email address {word}")
+    public void i_enter_a_specific_email_address(String email) {
+        driver.findElement(By.name("email")).sendKeys(email);
+        System.out.println("Entered email: " + email);
+    }
+    @When("I enter a specific comment {string}")
+    public void i_enter_a_specific_comment(String comment) {
+        driver.findElement(By.name("message")).sendKeys(comment);
+        System.out.println("Entered comment: " + comment);
+    }
+
     @And("I click on Submit button")
     public void i_click_on_submit_button() {
         System.out.println("Clicked submit button");
@@ -94,6 +115,6 @@ public class Contact_Us_Steps {
         System.out.println("Verified thank you message: ");
         WebElement thankYouMsg = driver.findElement(By.xpath("//h1"));
         Assert.assertTrue(thankYouMsg.isDisplayed());
-        Assert.assertEquals(thankYouMsg.getText(), "Thank You for you Message!");
+        Assert.assertEquals(thankYouMsg.getText(), "Thank You for your Message!");
     }
 }
