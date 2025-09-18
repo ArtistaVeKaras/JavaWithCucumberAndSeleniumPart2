@@ -1,5 +1,3 @@
-@regression
-
 Feature: Webdriver University - Contact Us Page
 
   @smoke
@@ -21,3 +19,7 @@ Feature: Webdriver University - Contact Us Page
     When I enter a specific comment "How are you?"
     And I click on Submit button
     Then I should see a thank you message
+
+   @beta
+  Scenario: Verify Contact Us Page - Run only this regression tests
+     Given I navigate to Webdriver University Contact Us Page

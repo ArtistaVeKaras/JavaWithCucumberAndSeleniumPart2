@@ -19,7 +19,7 @@ import java.time.Duration;
 
 public class Contact_Us_Steps {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     @Before
     public void setUp() {
