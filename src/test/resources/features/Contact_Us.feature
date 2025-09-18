@@ -1,3 +1,4 @@
+@contactUs
 Feature: Webdriver University - Contact Us Page
 
   @smoke
@@ -20,6 +21,6 @@ Feature: Webdriver University - Contact Us Page
     And I click on Submit button
     Then I should see a thank you message
 
-   @beta
+  @beta
   Scenario: Verify Contact Us Page - Run only this regression tests
      Given I navigate to Webdriver University Contact Us Page

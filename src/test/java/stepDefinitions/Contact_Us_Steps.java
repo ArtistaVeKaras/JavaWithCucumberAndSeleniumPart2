@@ -21,7 +21,7 @@ public class Contact_Us_Steps {
 
     private WebDriver driver;
 
-    @Before
+    @Before("@contactUs")
     public void setUp() {
         // Setup ChromeDriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
@@ -39,12 +39,12 @@ public class Contact_Us_Steps {
         driver.get("http://webdriveruniversity.com/Contact-Us/contactus.html");
     }
 
-//    @After
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @After("@contactUs")
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
     public String generateRandomInt(int length) {
         return RandomStringUtils.randomNumeric(length);

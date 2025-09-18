@@ -22,7 +22,7 @@ public class Login_Steps {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @Before
+    @Before("@Login")
     public void setUp() {
         // Setup ChromeDriver using WebDriverManager
         WebDriverManager.chromedriver().setup();
