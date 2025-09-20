@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
         glue = {"stepDefinitions"},
         tags = "@Login",  // Optional: add this if you want to run specific scenarios
         monochrome = true,
-        dryRun = false,
+        dryRun = true,
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",

@@ -1,9 +1,11 @@
 @contactUs
 Feature: Webdriver University - Contact Us Page
 
+  Background:
+    Given I navigate to Webdriver University Contact Us Page
+
   @smoke
   Scenario: Verify Contact Us Page
-    Given I navigate to Webdriver University Contact Us Page
     When I enter a unique first name
     And I enter a unique last name
     And I enter a unique email
@@ -13,7 +15,6 @@ Feature: Webdriver University - Contact Us Page
 
   @regression
   Scenario: Verify Contact Us Page - Specific Data
-    Given I navigate to Webdriver University Contact Us Page
     When I enter a specific first name akiira
     When I enter a specific last name corr
     When I enter a specific email address akiira_corr@blogs.com

@@ -1,11 +1,13 @@
 package stepDefinitions;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.compress.compressors.zstandard.ZstdCompressorOutputStream;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,20 +42,27 @@ public class Login_Steps {
         driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
     }
 
+    @After("@Login")
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
 
     public void AlertHandler(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // Accepts a simple alert
+//     Accepts a simple alert
     public void acceptAlert() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
 
-    // Gets the alert text
+//     Gets the alert text
     public String getAlertText() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
@@ -81,21 +90,24 @@ public class Login_Steps {
         System.out.println("Clicked the submit button");
         driver.findElement(By.id("login-button")).click();
     }
-    @Then("I should see the unsuccess message validation")
-    public void i_should_see_the_unsuccess_message_validation() {
-        System.out.println("Validation unsuccess");
-        AlertHandler(driver);
-        String alertText = getAlertText();
-        Assert.assertEquals(alertText, "validation failed");
-        acceptAlert();
+
+    @Then("I should see the following validation message {}")
+    public void i_should_see_the_following_validation_message(String validationMessage) {
+        System.out.println("Validation message:" + validationMessage);
+//        AlertHandler(driver);
+//        String alertText = getAlertText();
+        String alertText = driver.switchTo().alert().getText();
+        System.out.println(alertText);
+        Assert.assertEquals(alertText, validationMessage);
+//        acceptAlert();
     }
 
-    @Then("I should see the success message validation")
-    public void i_should_see_the_success_message_validation() {
-        System.out.println("Validation Success");
-        AlertHandler(driver);
-        String alertText = getAlertText();
-        Assert.assertEquals(alertText, "validation succeeded");
-        acceptAlert();
-    }
+//    @Then("I should see the following validation message validation failed")
+//    public void i_should_see_the_following_validation_message_success(String validationMessage) {
+//        System.out.println("Validation message" + validationMessage);
+//        AlertHandler(driver);
+//        String alertText = getAlertText();
+//        Assert.assertEquals(alertText, "validation failed");
+//        acceptAlert();
+//    }
 }
