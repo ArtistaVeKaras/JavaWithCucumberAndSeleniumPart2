@@ -1,68 +1,38 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.compress.compressors.zstandard.ZstdCompressorOutputStream;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import static driver.DriverFactory.getDriver;
+
 
 public class Login_Steps {
 
-    private WebDriver driver;
+    private WebDriver driver = getDriver();
     private WebDriverWait wait;
-
-    @Before("@Login")
-    public void setUp() {
-        // Setup ChromeDriver using WebDriverManager
-        WebDriverManager.chromedriver().setup();
-
-        // Configure Chrome options
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--start-maximized");
-
-        // Initialize ChromeDriver with options
-        driver = new ChromeDriver(options);
-
-        // Set implicit wait
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
-    }
-
-    @After("@Login")
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
 
     public void alertHandler(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-//     Accepts a simple alert
+    //     Accepts a simple alert
     public void acceptAlert() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }
 
-//     Gets the alert text
+    //     Gets the alert text
     public String getAlertText() {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
@@ -85,6 +55,7 @@ public class Login_Steps {
         System.out.println("Entering the password");
         driver.findElement(By.id("password")).sendKeys(password);
     }
+
     @And("I click the submit button")
     public void i_click_the_submit_button() {
         System.out.println("Clicked the submit button");
@@ -101,13 +72,5 @@ public class Login_Steps {
         acceptAlert();
 
     }
-
-//    @Then("I should see the following validation message validation failed")
-//    public void i_should_see_the_following_validation_message_success(String validationMessage) {
-//        System.out.println("Validation message" + validationMessage);
-//        AlertHandler(driver);
-//        String alertText = getAlertText();
-//        Assert.assertEquals(alertText, "validation failed");
-//        acceptAlert();
-//    }
 }
+

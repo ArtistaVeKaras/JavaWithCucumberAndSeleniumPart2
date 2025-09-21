@@ -87,11 +87,6 @@ Clean and run all tests:
 mvn clean test
 ```
 
-Run tests with specific tags (AND condition):
-```bash
-mvn test -Dcucumber.filter.tags="@smoke"
-```
-
 Run tests with a specific runner class:
 ```bash
 mvn test -Dtest=MainRunner
@@ -104,7 +99,9 @@ mvn test -Dcucumber.filter.tags="@smoke"
 
 Run a specific feature file:
 ```bash
-mvn test -Dcucumber.features="**/Login.feature"
+mvn test -Dcucumber.features="classpath:features/Login.feature"
+or 
+mvn test -Dcucumber.features="src/test/resources/features/Login.feature"
 ```
 
 Run tests in parallel (requires configuration in runner):

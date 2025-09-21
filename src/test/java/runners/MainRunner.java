@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = {"classpath:features"},
         glue = {"stepDefinitions"},
-        tags = "@Login",  // Optional: add this if you want to run specific scenarios
+        tags = "@smoke",  // Optional: add this if you want to run specific scenarios
         monochrome = true,
         dryRun = true,
         plugin = {
