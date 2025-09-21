@@ -77,19 +77,39 @@ Looking at our `MainRunner.java`, here's what each option means:
 
 ## Example Commands
 
-Run a specific tag:
+Run all tests:
 ```bash
-mvn test -Dcucumber.filter.tags="@smoke"
+mvn test
 ```
 
-Generate reports and run tests:
+Clean and run all tests:
 ```bash
 mvn clean test
 ```
 
-Run with specific browser:
+Run tests with specific tags (AND condition):
 ```bash
-mvn test -Dbrowser=chrome
+mvn test -Dcucumber.filter.tags="@smoke"
+```
+
+Run tests with a specific runner class:
+```bash
+mvn test -Dtest=MainRunner
+```
+
+Run tests with a specific tag:
+```bash
+mvn test -Dcucumber.filter.tags="@smoke"
+```
+
+Run a specific feature file:
+```bash
+mvn test -Dcucumber.features="**/Login.feature"
+```
+
+Run tests in parallel (requires configuration in runner):
+```bash
+mvn test -Dcucumber.execution.parallel.enabled=true
 ```
 
 ## Troubleshooting

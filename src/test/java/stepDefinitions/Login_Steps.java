@@ -50,7 +50,7 @@ public class Login_Steps {
     }
 
 
-    public void AlertHandler(WebDriver driver) {
+    public void alertHandler(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
@@ -94,12 +94,12 @@ public class Login_Steps {
     @Then("I should see the following validation message {}")
     public void i_should_see_the_following_validation_message(String validationMessage) {
         System.out.println("Validation message:" + validationMessage);
-//        AlertHandler(driver);
-//        String alertText = getAlertText();
         String alertText = driver.switchTo().alert().getText();
-        System.out.println(alertText);
         Assert.assertEquals(alertText, validationMessage);
-//        acceptAlert();
+        System.out.println("testign");
+        alertHandler(driver);
+        acceptAlert();
+
     }
 
 //    @Then("I should see the following validation message validation failed")
