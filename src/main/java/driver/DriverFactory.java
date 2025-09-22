@@ -8,11 +8,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class DriverFactory {
 
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         if (driver.get() == null) {
@@ -24,9 +28,8 @@ public class DriverFactory {
     private static WebDriver createDriver() {
         WebDriver driver = null;
 
-        String browserType = "firefox";
 
-        switch (browserType) {
+        switch (getBrowserType()) {
             case "chrome":
                 // Setup ChromeDriver using WebDriverManager
                 WebDriverManager.chromedriver().setup();
@@ -70,6 +73,21 @@ public class DriverFactory {
         }
         driver.manage().window().maximize();
         return driver;
+    }
+
+    private static String getBrowserType() {
+        String browserType = null;
+
+        try {
+        Properties properties = new Properties();
+        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties");
+        properties.load(fileInputStream);
+        browserType = properties.getProperty("browser").toLowerCase().trim();
+    }
+        catch (IOException e) {
+            System.out.println("Error reading config.properties file" + e.getMessage());
+        }
+        return browserType;
     }
 
     public static void cleanUpDriver() {
