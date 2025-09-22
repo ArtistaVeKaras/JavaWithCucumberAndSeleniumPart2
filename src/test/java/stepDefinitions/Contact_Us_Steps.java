@@ -29,6 +29,7 @@ public class Contact_Us_Steps {
     @Given("I navigate to Webdriver University Contact Us Page")
     public void i_navigate_to_webdriver_university_contact_us_page() {
         System.out.println("Navigated to Contact Us page");
+        driver.get("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
     }
 
     @When("I enter a unique first name")

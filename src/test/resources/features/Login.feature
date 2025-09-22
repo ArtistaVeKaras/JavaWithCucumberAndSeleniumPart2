@@ -4,12 +4,15 @@ Feature: Login Page - WebDriver University
   Background:
     Given I navigate to the Log in page
 
+
   Scenario: Login to WebDriver University page Successful
+    When I enter my username webdriver
     And I enter my password webdriver123
     And I click the submit button
-    Then I should see the following validation message validation success
+    Then I should see the following validation message validation succeeded
 
   Scenario: Login to WebDriver University page unsuccessful
+    When I enter my username Bob
     And I enter my password webdriver125
     And I click the submit button
     Then I should see the following validation message validation failed

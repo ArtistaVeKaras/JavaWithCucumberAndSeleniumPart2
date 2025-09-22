@@ -42,6 +42,7 @@ public class Login_Steps {
     @Given("I navigate to the Log in page")
     public void i_navigate_to_the_log_in_page() {
         System.out.println("Navigate to the user Login page");
+        driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
     }
 
     @When("I enter my username {word}")

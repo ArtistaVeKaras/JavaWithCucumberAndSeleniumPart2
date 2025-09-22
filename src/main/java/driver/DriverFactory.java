@@ -24,7 +24,7 @@ public class DriverFactory {
     private static WebDriver createDriver() {
         WebDriver driver = null;
 
-        String browserType = "chrome";
+        String browserType = "firefox";
 
         switch (browserType) {
             case "chrome":
@@ -36,20 +36,34 @@ public class DriverFactory {
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--start-maximized");
 
-                // Initialize ChromeDriver with options
+                // Initialize FirefoxDriver with options
                 driver = new ChromeDriver(options);
 
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-                driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
                 // Setup FirefoxDriver using WebDriverManager
-                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
+                WebDriverManager.firefoxdriver().setup();
+
+                // Configure Chrome options
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                firefoxOptions.addArguments("--start-maximized");
+
+                // Initialize FirefoxDriver with options
                 driver = new FirefoxDriver(firefoxOptions);
+
+                // Set implicit wait
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                driver = new FirefoxDriver();
+
+
+//                // Setup FirefoxDriver using WebDriverManager Bruno's way unfornunately not working
+//                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
+//                FirefoxOptions firefoxOptions = new FirefoxOptions();
+//                firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+//                driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
                 throw new RuntimeException("Invalid browser type");
