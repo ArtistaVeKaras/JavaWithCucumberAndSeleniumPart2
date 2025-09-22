@@ -1,7 +1,8 @@
 # DriverFactory Class Guide
 
 ## Overview
-`DriverFactory` is a utility class designed to manage WebDriver instances in a Selenium WebDriver test automation framework. It implements the Singleton and Factory design patterns to provide a centralized way to create, manage, and dispose of WebDriver instances.
+`DriverFactory` is a utility class designed to manage WebDriver instances in a Selenium WebDriver test automation framework.
+It implements the Singleton and Factory design patterns to provide a centralized way to create, manage, and dispose of WebDriver instances.
 
 ## Purpose
 1. **Centralized WebDriver Management**: Provides a single point of control for WebDriver instance creation and management.
