@@ -1,6 +1,6 @@
-@test123
+@test123 @smoke
 
-Feature: Webdriver University - Contact Us Page
+Feature: Webdriver University - Contact Us Page Test
 
   Scenario: Verify Contact Us Page
     Given I navigate to Webdriver University Contact Us Page

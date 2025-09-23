@@ -1,4 +1,4 @@
-@contactUs @smoke
+@contactUs
 Feature: Webdriver University - Contact Us Page
 
   Background:

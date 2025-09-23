@@ -1,4 +1,4 @@
-@Login @smoke
+@Login
 Feature: Login Page - WebDriver University
 
   Background:

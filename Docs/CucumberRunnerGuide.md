@@ -44,6 +44,9 @@ Looking at our `MainRunner.java`, here's what each option means:
 - `features`: Points to your `.feature` files.
 - `glue`: Tells Cucumber where to find your step definitions.
 - `tags`: Lets you run specific scenarios by tagging them with `@tagName`.
+- `monochrome`: Makes the console output more readable.
+- `dryRun`: Checks if all steps have definitions without running the tests.
+- `plugin`: Configures report formats (HTML, JSON, JUnit).
 
 ### 3. Running Tests
 - Right-click the Runner class and select "Run".
@@ -107,6 +110,33 @@ mvn test -Dcucumber.features="src/test/resources/features/Login.feature"
 Run tests in parallel (requires configuration in runner):
 ```bash
 mvn test -Dcucumber.execution.parallel.enabled=true
+```
+## Parallel Test Execution Notes
+Regarding parallel execution being slower, this is actually expected in some Selenium WebDriver scenarios, and here's why:
+
+1. Resource Contention:
+   * Each parallel test needs its own browser instance
+   * More browsers running in parallel = more CPU/RAM usage
+   * Your machine might be getting overloaded
+   
+2. Test Data Management:
+   * If tests share data, they might be waiting for database locks
+   * Concurrent access to shared resources can cause delays
+   
+3. Network Bottlenecks:
+   * Multiple tests hitting the same server simultaneously
+   * Server might throttle requests
+   
+4. Optimal Thread Count:
+   * Running too many tests in parallel can be counterproductive
+   * The optimal number is typically 2-4 threads for most machines
+   
+To improve parallel execution:
+
+Find the sweet spot for thread count. Try adding this to your testng.xml:
+
+```java
+<suite name="TestSuite" parallel="methods" thread-count="3">
 ```
 
 ## Troubleshooting
