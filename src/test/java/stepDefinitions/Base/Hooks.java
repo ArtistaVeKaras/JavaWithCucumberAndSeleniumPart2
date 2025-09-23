@@ -12,18 +12,16 @@ public class Hooks {
 
     long stepStartTime;
 
-
     @Before
     public void setUp() {
         getDriver();
     }
 
-    @BeforeStep
-    public void beforeStep(Scenario scenario) {
-        stepStartTime = System.currentTimeMillis();
-//        String stepName = scenario.getStepLine();
-//        scenario.log("Starting step: " + stepName);
-    }
+//    @BeforeStep
+//    public void beforeStep(Scenario scenario) {
+//        stepStartTime = System.currentTimeMillis();
+//        // We've moved step logging to CustomFormatter
+//    }
 
     @AfterStep
     public void captureScreenshot(Scenario scenario) {

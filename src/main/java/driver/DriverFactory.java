@@ -1,7 +1,6 @@
 package driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,7 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
@@ -39,12 +37,11 @@ public class DriverFactory {
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--start-maximized");
 
-                // Initialize FirefoxDriver with options
+                // Initialize ChromeDriver with options
                 driver = new ChromeDriver(options);
 
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-                driver = new ChromeDriver();
                 break;
             case "firefox":
                 // Setup FirefoxDriver using WebDriverManager
@@ -59,8 +56,6 @@ public class DriverFactory {
 
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-                driver = new FirefoxDriver();
-
 
 //                // Setup FirefoxDriver using WebDriverManager Bruno's way unfornunately not working
 //                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");

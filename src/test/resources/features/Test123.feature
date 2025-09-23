@@ -1,4 +1,4 @@
-@test123 @smoke
+@test123
 
 Feature: Webdriver University - Contact Us Page Test
 

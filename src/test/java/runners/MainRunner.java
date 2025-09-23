@@ -7,13 +7,14 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = {"classpath:features"},
         glue = {"stepDefinitions"},
-        tags = "@smoke",  // Optional: add this if you want to run specific scenarios
+        tags = "@regression",  // Optional: add this if you want to run specific scenarios
         monochrome = true,
         dryRun = false,
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json"
+//                "stepDefinitions.CustomFormatter" Executes the beforeStep hook but not needed atm
         }
 )
 public class MainRunner extends AbstractTestNGCucumberTests {
