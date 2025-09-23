@@ -1,0 +1,58 @@
+# .github/workflows/maven.yml
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [ '11' ]
+        browser: [ 'chrome', 'firefox' ]
+        include:
+          - browser: chrome
+            driver: chrome
+          - browser: firefox
+            driver: firefox
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Set up WebDriver
+        uses: nanasess/setup-chromedriver@v1
+        if: matrix.browser == 'chrome'
+        with:
+          chromedriver-version: 'latest'
+
+      - name: Set up Firefox
+        uses: browser-actions/setup-firefox@v1
+        if: matrix.browser == 'firefox'
+
+      - name: Run tests with Maven
+        run: mvn -B test -Dcucumber.filter.tags="@${{ matrix.browser }}"
+        env:
+          BROWSER: ${{ matrix.browser }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports-${{ matrix.browser }}
+          path: |
+            target/cucumber-reports/**
+            target/surefire-reports/**
+          retention-days: 5
