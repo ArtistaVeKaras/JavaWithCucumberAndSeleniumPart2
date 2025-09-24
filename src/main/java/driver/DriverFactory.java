@@ -33,12 +33,12 @@ public class DriverFactory {
                 WebDriverManager.chromedriver().setup();
 
                 // Configure Chrome options
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                options.addArguments("--start-maximized");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                chromeOptions.addArguments("--start-maximized");
 
                 // Initialize ChromeDriver with options
-                driver = new ChromeDriver(options);
+                driver = new ChromeDriver(chromeOptions);
 
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -50,10 +50,10 @@ public class DriverFactory {
                 // Configure Chrome options
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--start-maximized");
+                firefoxOptions.addArguments("--headless");
 
                 // Initialize FirefoxDriver with options
                 driver = new FirefoxDriver(firefoxOptions);
-                options.addArguments("--headless");
 
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
