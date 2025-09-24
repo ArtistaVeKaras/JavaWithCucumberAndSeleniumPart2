@@ -38,13 +38,13 @@ jobs:
           chromedriver-version: 'latest'
 
       - name: Install Firefox
-        if: matrix.browser == 'firefox'
+        if: matrix.browser == 'firefox' && github.event_name != 'push'
         run: |
           sudo apt-get update
           sudo apt-get install -y firefox
 
       - name: Install Geckodriver
-        if: matrix.browser == 'firefox'
+        if: matrix.browser == 'firefox' && github.event_name != 'push'
         run: |
           GECKODRIVER_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | jq -r .tag_name)
           wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
@@ -52,13 +52,14 @@ jobs:
           sudo mv geckodriver /usr/local/bin/
 
       - name: Run tests with Maven
+        if: matrix.browser != 'firefox' || github.event_name != 'push'
         run: mvn -B test
         env:
           BROWSER: ${{ matrix.browser }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload test reports
-        if: always()
+        if: always() && (matrix.browser != 'firefox' || github.event_name != 'push')
         uses: actions/upload-artifact@v4
         with:
           name: test-reports-${{ matrix.browser }}
