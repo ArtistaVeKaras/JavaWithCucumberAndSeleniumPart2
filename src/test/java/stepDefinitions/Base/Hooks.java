@@ -1,6 +1,9 @@
 package stepDefinitions.Base;
 
-import io.cucumber.java.*;
+import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -25,7 +28,7 @@ public class Hooks {
 
     @AfterStep
     public void captureScreenshot(Scenario scenario) {
-        if(scenario.isFailed()) {
+        if (scenario.isFailed()) {
             String timestamp = String.valueOf(System.currentTimeMillis());
             byte[] screenshot = ((TakesScreenshot) getDriver())
                     .getScreenshotAs(OutputType.BYTES);

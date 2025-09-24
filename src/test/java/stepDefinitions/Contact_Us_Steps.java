@@ -61,16 +61,19 @@ public class Contact_Us_Steps {
         driver.findElement(By.name("first_name")).sendKeys(firstName);
         System.out.println("Entered first name: " + firstName);
     }
+
     @When("I enter a specific last name {word}")
     public void i_enter_a_specific_last_name(String lastName) {
         driver.findElement(By.name("last_name")).sendKeys(lastName);
         System.out.println("Entered last name: " + lastName);
     }
+
     @When("I enter a specific email address {word}")
     public void i_enter_a_specific_email_address(String email) {
         driver.findElement(By.name("email")).sendKeys(email);
         System.out.println("Entered email: " + email);
     }
+
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
         driver.findElement(By.name("message")).sendKeys(comment);

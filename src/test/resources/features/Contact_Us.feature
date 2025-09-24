@@ -24,4 +24,4 @@ Feature: Webdriver University - Contact Us Page
 
   @beta
   Scenario: Verify Contact Us Page - Run only this regression tests
-     Given I navigate to Webdriver University Contact Us Page
+    Given I navigate to Webdriver University Contact Us Page

@@ -27,5 +27,5 @@ Feature: Login Page - WebDriver University
       | username  | password     | loginValidationMessage |
       | webdriver | webdriver123 | validation succeeded   |
       | webdriver | webdriver125 | validation failed      |
-      | webdri12r | webdriverooo | validation failed    |
+      | webdri12r | webdriverooo | validation failed      |
 

@@ -74,12 +74,11 @@ public class DriverFactory {
         String browserType = null;
 
         try {
-        Properties properties = new Properties();
-        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties");
-        properties.load(fileInputStream);
-        browserType = properties.getProperty("browser").toLowerCase().trim();
-    }
-        catch (IOException e) {
+            Properties properties = new Properties();
+            FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties");
+            properties.load(fileInputStream);
+            browserType = properties.getProperty("browser").toLowerCase().trim();
+        } catch (IOException e) {
             System.out.println("Error reading config.properties file" + e.getMessage());
         }
         return browserType;
