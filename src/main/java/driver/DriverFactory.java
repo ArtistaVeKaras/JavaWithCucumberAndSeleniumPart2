@@ -9,7 +9,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -17,14 +16,14 @@ public class DriverFactory {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver getDriver() throws IOException {
+    public static WebDriver getDriver() {
         if (driver.get() == null) {
             driver.set(createDriver());
         }
         return driver.get();
     }
 
-    private static WebDriver createDriver() throws IOException{
+    private static WebDriver createDriver() {
         WebDriver driver = null;
 
 
@@ -37,10 +36,6 @@ public class DriverFactory {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--start-maximized");
-
-                // CI configuration
-                String uniqueDir = Files.createTempDirectory("chrome-profile-").toString();
-                chromeOptions.addArguments("--user-data-dir=" + uniqueDir);
 
                 // Initialize ChromeDriver with options
                 driver = new ChromeDriver(chromeOptions);

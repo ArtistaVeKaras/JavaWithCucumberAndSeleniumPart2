@@ -15,8 +15,7 @@ import static driver.DriverFactory.getDriver;
 
 public class Contact_Us_Steps {
 
-    private WebDriver driver = getDriver();
-    private WebDriverWait wait;
+    private final WebDriver driver = getDriver();
 
     public String generateRandomInt(int length) {
         return RandomStringUtils.randomNumeric(length);
