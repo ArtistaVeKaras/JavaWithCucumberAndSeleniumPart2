@@ -3,9 +3,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   test:
@@ -13,8 +13,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [ '11' ]
-        browser: [ 'chrome', 'firefox' ]
+        java: ['11']
+        browser: ['chrome', 'firefox']
         include:
           - browser: chrome
             driver: chrome
@@ -37,9 +37,19 @@ jobs:
         with:
           chromedriver-version: 'latest'
 
-      - name: Set up Firefox
-        uses: browser-actions/setup-firefox@v1
+      - name: Install Firefox
         if: matrix.browser == 'firefox'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+
+      - name: Install Geckodriver
+        if: matrix.browser == 'firefox'
+        run: |
+          GECKODRIVER_VERSION=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | jq -r .tag_name)
+          wget https://github.com/mozilla/geckodriver/releases/download/$GECKODRIVER_VERSION/geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
+          tar -xzf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
+          sudo mv geckodriver /usr/local/bin/
 
       - name: Run tests with Maven
         run: mvn -B test

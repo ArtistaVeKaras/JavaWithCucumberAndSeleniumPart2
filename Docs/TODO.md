@@ -2,7 +2,7 @@
 
 ## High Priority
 - [ ] Review and fix all the warning from SonarQube
-- [ ] Fix the chrome browser issue in Github actions
+- [x] Fix the chrome browser issue in Github actions
 - [ ] Check how to implement git to run tests before pushing code to the remote repository
 
 ## Medium Priority
