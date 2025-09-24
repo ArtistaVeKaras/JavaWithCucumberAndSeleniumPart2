@@ -17,14 +17,14 @@ public class DriverFactory {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver() throws IOException {
         if (driver.get() == null) {
             driver.set(createDriver());
         }
         return driver.get();
     }
 
-    private static WebDriver createDriver() {
+    private static WebDriver createDriver() throws IOException{
         WebDriver driver = null;
 
 
