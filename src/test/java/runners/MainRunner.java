@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = {"classpath:features"},
         glue = {"stepDefinitions"},
-        tags = "@contactUs",  // Optional: add this if you want to run specific scenarios
+        tags = "@smoke",  // Optional: add this if you want to run specific scenarios
         monochrome = true,
         dryRun = false,
         plugin = {

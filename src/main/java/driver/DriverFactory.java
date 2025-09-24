@@ -47,10 +47,12 @@ public class DriverFactory {
                 // Setup FirefoxDriver using WebDriverManager
                 WebDriverManager.firefoxdriver().setup();
 
-                // Configure Chrome options
+                // Configure Firefox options
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--start-maximized");
-                firefoxOptions.addArguments("--headless");
+                if (System.getenv("CI") != null) {
+                    firefoxOptions.addArguments("--headless");
+                }
 
                 // Initialize FirefoxDriver with options
                 driver = new FirefoxDriver(firefoxOptions);
