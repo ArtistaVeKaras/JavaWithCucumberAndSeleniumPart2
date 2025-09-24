@@ -53,6 +53,7 @@ public class DriverFactory {
 
                 // Initialize FirefoxDriver with options
                 driver = new FirefoxDriver(firefoxOptions);
+                options.addArguments("--headless");
 
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
