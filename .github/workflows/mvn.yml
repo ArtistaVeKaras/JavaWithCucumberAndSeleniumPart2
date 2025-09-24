@@ -42,7 +42,7 @@ jobs:
         if: matrix.browser == 'firefox'
 
       - name: Run tests with Maven
-        run: mvn -B test -Dcucumber.filter.tags="@${{ matrix.browser }}"
+        run: mvn -B test
         env:
           BROWSER: ${{ matrix.browser }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
