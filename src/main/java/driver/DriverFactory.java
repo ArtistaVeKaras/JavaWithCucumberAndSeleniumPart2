@@ -35,21 +35,14 @@ public class DriverFactory {
                 WebDriverManager.chromedriver().setup();
 
                 // Configure Chrome options
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("--remote-allow-origins=*");
-                options.addArguments("--start-maximized");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                chromeOptions.addArguments("--start-maximized");
 
-                try {
-                    Path tempProfile = Files.createTempDirectory("chrome-user-data-");
-                    options.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
-                } catch (IOException e) {
-                    throw new RuntimeException("Could not create temp user-data-dir for Chrome", e);
-                }
+                // Initialize ChromeDriver with options
+                driver = new ChromeDriver(chromeOptions);
 
-// Initialize ChromeDriver with options
-                driver = new ChromeDriver(options);
-
-// Set implicit wait
+                // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 break;
             case "firefox":
