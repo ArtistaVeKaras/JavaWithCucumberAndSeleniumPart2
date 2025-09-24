@@ -9,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -36,6 +38,12 @@ public class DriverFactory {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--start-maximized");
+                try {
+                    Path tempProfile = Files.createTempDirectory("chrome-user-data-");
+                    chromeOptions.addArguments("--user-data-dir=" + tempProfile.toAbsolutePath().toString());
+                } catch (IOException e) {
+                    throw new RuntimeException("Failed to create temp directory for Chrome user data", e);
+                }
 
                 // Initialize ChromeDriver with options
                 driver = new ChromeDriver(chromeOptions);
@@ -60,11 +68,6 @@ public class DriverFactory {
                 // Set implicit wait
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-//                // Setup FirefoxDriver using WebDriverManager Bruno's way unfornunately not working
-//                System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/geckodriver.exe");
-//                FirefoxOptions firefoxOptions = new FirefoxOptions();
-//                firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-//                driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
                 throw new RuntimeException("Invalid browser type");
