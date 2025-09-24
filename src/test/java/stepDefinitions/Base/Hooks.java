@@ -20,12 +20,6 @@ public class Hooks {
         getDriver();
     }
 
-//    @BeforeStep
-//    public void beforeStep(Scenario scenario) {
-//        stepStartTime = System.currentTimeMillis();
-//        // We've moved step logging to CustomFormatter
-//    }
-
     @AfterStep
     public void captureScreenshot(Scenario scenario) {
         if (scenario.isFailed()) {

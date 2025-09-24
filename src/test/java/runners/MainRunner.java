@@ -14,7 +14,6 @@ import org.testng.annotations.DataProvider;
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json"
-//                "stepDefinitions.CustomFormatter" Executes the beforeStep hook but not needed atm
         }
 )
 public class MainRunner extends AbstractTestNGCucumberTests {

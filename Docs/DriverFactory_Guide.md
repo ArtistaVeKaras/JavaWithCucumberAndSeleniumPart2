@@ -51,14 +51,10 @@ WebDriver instances.
 WebDriver driver = DriverFactory.getDriver();
 
 // Use the driver
-driver.
-
-get("https://example.com");
+driver.get("https://example.com");
 
 // Clean up when done
-DriverFactory.
-
-cleanUpDriver();
+DriverFactory.cleanUpDriver();
 ```
 
 ### In TestNG/Cucumber Hooks

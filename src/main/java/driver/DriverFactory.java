@@ -9,14 +9,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DriverFactory {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final Logger logger = LoggerFactory.getLogger(DriverFactory.class);
 
     public static WebDriver getDriver() {
         if (driver.get() == null) {
@@ -26,10 +27,13 @@ public class DriverFactory {
     }
 
     private static WebDriver createDriver() {
-        WebDriver driver = null;
+        String browserType = getBrowserType();
+        if (browserType == null) {
+            throw new IllegalStateException("Browser type is not specified in config.properties or there was an error reading the configuration");
+        }
 
-
-        switch (getBrowserType()) {
+        WebDriver driver;
+        switch (browserType) {
             case "chrome":
                 // Setup ChromeDriver using WebDriverManager
                 WebDriverManager.chromedriver().setup();
@@ -41,9 +45,6 @@ public class DriverFactory {
 
                 // Initialize ChromeDriver with options
                 driver = new ChromeDriver(chromeOptions);
-
-                // Set implicit wait
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                 break;
             case "firefox":
                 // Setup FirefoxDriver using WebDriverManager
@@ -58,28 +59,29 @@ public class DriverFactory {
 
                 // Initialize FirefoxDriver with options
                 driver = new FirefoxDriver(firefoxOptions);
-
-                // Set implicit wait
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
                 break;
             default:
-                throw new RuntimeException("Invalid browser type");
+                throw new IllegalArgumentException("Unsupported browser type: " + browserType);
         }
+
+        // Common configurations
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         return driver;
     }
 
-    private static String getBrowserType() {
+    private static String getBrowserType(){
         String browserType = null;
 
-        try {
+        try (FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties")) {
             Properties properties = new Properties();
-            FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "/src/main/java/properties/config.properties");
             properties.load(fileInputStream);
             browserType = properties.getProperty("browser").toLowerCase().trim();
         } catch (IOException e) {
-            System.out.println("Error reading config.properties file" + e.getMessage());
+            logger.error(String.format("Error reading config.properties file: %s", e.getMessage()));
+        } finally {
+            // This is necessary to ensure that the file input stream is closed even if an exception is thrown
         }
         return browserType;
     }
