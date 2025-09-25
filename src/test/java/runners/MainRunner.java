@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = {"classpath:features"},
         glue = {"stepDefinitions"},
-        tags = "@regression",  // Optional: add this if you want to run specific scenarios
+        tags = "@Login",  // Optional: add this if you want to run specific scenarios
         monochrome = true,
         dryRun = false,
         plugin = {
@@ -18,7 +18,7 @@ import org.testng.annotations.DataProvider;
 )
 public class MainRunner extends AbstractTestNGCucumberTests {
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }

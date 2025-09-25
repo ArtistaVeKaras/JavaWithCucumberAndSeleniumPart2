@@ -1,4 +1,3 @@
-@smoke
 Feature: Login Page - WebDriver University
 
   Background:
@@ -17,6 +16,7 @@ Feature: Login Page - WebDriver University
     And I click the submit button
     Then I should see the following validation message validation failed
 
+  @Login
   Scenario Outline: Validate Success and Unsuccess Login
     When I enter my username <username>
     And I enter my password <password>
@@ -28,4 +28,5 @@ Feature: Login Page - WebDriver University
       | webdriver | webdriver123 | validation succeeded   |
       | webdriver | webdriver125 | validation failed      |
       | webdri12r | webdriverooo | validation failed      |
+      | nothing   | nothing      | validation failed      |
 
