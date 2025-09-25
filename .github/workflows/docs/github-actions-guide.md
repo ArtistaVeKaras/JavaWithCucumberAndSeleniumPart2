@@ -66,12 +66,12 @@ Expert: Uses an action specifically designed for Firefox setup in GitHub Actions
 
 ### 5. Run Tests
 
-Beginner: Runs Maven tests with the specified browser tag.
+Beginner: Runs Maven tests.
 Expert: Uses Maven's batch mode (-B) and passes the browser type as an environment variable.
 
 ```yaml
 - name: Run tests with Maven
-  run: mvn -B test -Dcucumber.filter.tags="@${{ matrix.browser }}"
+  run:  mvn -B test
   env:
     BROWSER: ${{ matrix.browser }}
 ```
@@ -80,6 +80,17 @@ Expert: Uses Maven's batch mode (-B) and passes the browser type as an environme
 
 Beginner: Saves test reports as build artifacts for 5 days.
 Expert: Uses GitHub's artifact storage to persist test results and reports between workflow runs.
+
+```yaml
+- name: Upload test reports
+  uses: actions/upload-artifact@v4
+  with:
+    name: test-reports-${{ matrix.browser }}
+    path: |
+      target/cucumber-reports/**
+      target/surefire-reports/**
+    retention-days: 5
+```
 
 #### Matrix Strategy
 
@@ -105,15 +116,3 @@ The workflow uses a matrix strategy to run tests against multiple browsers:
 * Java Version: Update the Java version in the matrix.java section if needed
 * Browsers: Add or remove browsers from the matrix.browser section
 * Artifact Retention: Adjust the retention-days value as needed
-
-```yaml
-- name: Upload test reports
-  uses: actions/upload-artifact@v3
-  with:
-    name: test-reports-${{ matrix.browser }}
-    path: |
-      target/cucumber-reports/**
-      target/surefire-reports/**
-    retention-days: 5
-```
-

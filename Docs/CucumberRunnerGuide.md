@@ -19,7 +19,7 @@ Looking at our `MainRunner.java`, here's what each option means:
 
 ```java
 @CucumberOptions(
-        features = {"classpath:features"},  // Path to feature files
+        features = {"classpath:features"}, // Path to feature files
         glue = {"stepDefinitions"},        // Package with step definitions
         tags = "@Login",                   // Tags to filter scenarios
         monochrome = true,                 // Readable console output

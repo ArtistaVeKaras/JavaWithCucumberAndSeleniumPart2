@@ -13,8 +13,6 @@ import static driver.DriverFactory.getDriver;
 
 public class Hooks {
 
-    long stepStartTime;
-
     @Before
     public void setUp() {
         getDriver();
