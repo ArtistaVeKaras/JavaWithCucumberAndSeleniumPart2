@@ -75,7 +75,7 @@ public class Contact_Us_Steps extends Base_PO {
     @And("I click on Submit button")
     public void i_click_on_submit_button() {
         System.out.println("Clicked submit button");
-        clickButton(By.cssSelector("input[value='SUBMIT']"));
+        waitForElementAndClick(By.cssSelector("input[value='SUBMIT']"));
     }
 
     @Then("I should see a thank you message")

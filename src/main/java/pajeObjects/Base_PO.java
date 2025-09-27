@@ -79,14 +79,26 @@ public class Base_PO {
         wait.until(ExpectedConditions.visibilityOfElementLocated(by)).sendKeys(textToSend);
     }
 
+//    // Send keys to an element
+//    public void sendKeys(WebElement element, String textToSend){
+//        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(by)).sendKeys(textToSend);
+//    }
+
     // Clicks on an element
-    public void clickButton(By by){
+    public void waitForElementAndClick(By by){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
+    // Clicks on an element
+    public void waitForElementAndClick(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+    }
 
-    // Finds an element and extracts the text
+        // Finds an element and extracts the text
     public String findElementAndGetText(By by){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));

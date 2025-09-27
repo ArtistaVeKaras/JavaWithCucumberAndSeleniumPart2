@@ -35,7 +35,7 @@ public class Login_Steps extends Base_PO {
     @And("I click the submit button")
     public void i_click_the_submit_button() {
         System.out.println("Clicked the submit button");
-        clickButton(By.id("login-button"));
+        waitForElementAndClick(By.id("login-button"));
     }
 
     @Then("I should see the following validation message {}")

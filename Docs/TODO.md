@@ -12,6 +12,7 @@
 - [ ] Add git config to the project and assign variables globally
 - [ ] Understand why running parallel tests on firefox fails more often than on chrome
 - [ ] Understand why firefox test are taking long time to run compared to chrome
+- [ ] Create a file with the most common interview questions related to Selenium WebDriver, Java
 
 ## Future Enhancements
 - [ ] Add visual
