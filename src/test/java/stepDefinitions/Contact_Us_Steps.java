@@ -5,17 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pajeObjects.Base_PO;
-
-import static java.sql.DriverManager.getDriver;
+import pageObjects.BasePageObject;
 
 
-public class Contact_Us_Steps extends Base_PO {
-
-    private final WebDriver driver = getDriver();
+public class Contact_Us_Steps extends BasePageObject {
 
 
     @Given("I navigate to Webdriver University Contact Us Page")

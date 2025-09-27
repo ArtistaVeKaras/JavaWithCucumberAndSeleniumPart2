@@ -7,10 +7,10 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pajeObjects.Base_PO;
+import pageObjects.BasePageObject;
 
 
-public class Login_Steps extends Base_PO {
+public class Login_Steps extends BasePageObject {
 
     private final WebDriver driver = getDriver();
 
