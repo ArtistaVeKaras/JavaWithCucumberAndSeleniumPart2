@@ -5,9 +5,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class Base_PO {
@@ -34,18 +34,22 @@ public class Base_PO {
     public WebDriver driver;
 
     public WebDriver getDriver() {
+
         return DriverFactory.getDriver();
     }
 
     public String generateRandomInt(int length) {
+
         return RandomStringUtils.randomNumeric(length);
     }
 
     public String generateRandomString(int length) {
+
         return RandomStringUtils.randomAlphabetic(length);
     }
 
     public void navigateToPage(String url) {
+
         getDriver().get(url);
     }
 
@@ -69,13 +73,23 @@ public class Base_PO {
         return alert.getText();
     }
 
+    // Send keys to an element
     public void sendKeys(By by, String textToSend){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by)).sendKeys(textToSend);
     }
 
+    // Clicks on an element
     public void clickButton(By by){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(by)).click();
+    }
+
+
+    // Finds an element and extracts the text
+    public String findElementAndGetText(By by){
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        return element.getText();
     }
 }

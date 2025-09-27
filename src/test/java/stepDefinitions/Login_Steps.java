@@ -36,7 +36,6 @@ public class Login_Steps extends Base_PO {
     public void i_click_the_submit_button() {
         System.out.println("Clicked the submit button");
         clickButton(By.id("login-button"));
-//        driver.findElement(By.id("login-button")).click();
     }
 
     @Then("I should see the following validation message {}")

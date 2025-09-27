@@ -79,7 +79,7 @@ public class DriverFactory {
             properties.load(fileInputStream);
             browserType = properties.getProperty("browser").toLowerCase().trim();
         } catch (IOException e) {
-            logger.error(String.format("Error reading config.properties file: %s", e.getMessage()));
+            logger.error("Error reading config.properties file: {}", e.getMessage());
         } finally {
             // This is necessary to ensure that the file input stream is closed even if an exception is thrown
         }

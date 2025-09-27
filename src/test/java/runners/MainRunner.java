@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = {"classpath:features"},
         glue = {"stepDefinitions"},
-        tags = "@Login",  // Optional: add this if you want to run specific scenarios
+        tags = "@regression",  // Optional: add this if you want to run specific scenarios
         monochrome = true,
         dryRun = false,
         plugin = {
