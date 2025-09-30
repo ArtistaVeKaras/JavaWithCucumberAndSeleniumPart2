@@ -8,16 +8,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.BasePageObject;
+import pageObjects.LoginPageObject;
 
 
 public class Login_Steps extends BasePageObject {
 
     private final WebDriver driver = getDriver();
+    private final LoginPageObject loginPageObject;
+
+    public Login_Steps(LoginPageObject loginPageObject) {
+        this.loginPageObject = loginPageObject;
+    }
 
     @Given("I navigate to the Log in page")
     public void i_navigate_to_the_log_in_page() {
         System.out.println("Navigate to the user Login page");
-        navigateToPage("https://www.webdriveruniversity.com/Login-Portal/index.html");
+        loginPageObject.navigateToWebDriverUniversityLoginPage();
     }
 
     @When("I enter my username {word}")

@@ -3,7 +3,7 @@ Feature: Login Page - WebDriver University
   Background:
     Given I navigate to the Log in page
 
-
+  @login123
   Scenario: Login to WebDriver University page Successful
     When I enter my username webdriver
     And I enter my password webdriver123

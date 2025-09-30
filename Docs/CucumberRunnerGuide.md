@@ -125,6 +125,14 @@ Run tests in parallel (requires configuration in runner):
 mvn test -Dcucumber.execution.parallel.enabled=true
 ```
 
+Maven Force Update Dependencies if offline is enabled. 
+The -U flag forces Maven to update snapshots and releases
+
+```bash
+mvn clean install -U
+```
+
+
 ## Parallel Test Execution Notes
 
 Regarding parallel execution being slower, this is actually expected in some Selenium WebDriver scenarios, and here's
