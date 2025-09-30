@@ -33,4 +33,8 @@ public class LoginPageObject extends BasePageObject {
     public void clickLoginButton() {
         waitForElementAndClick(loginButton);
     }
+
+    public void validateSuccessLoginMessage(String expectedText){
+        waitForAlertAndValidateText(expectedText);
+    }
 }

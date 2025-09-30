@@ -4,16 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import pageObjects.BasePageObject;
 import pageObjects.LoginPageObject;
 
 
 public class Login_Steps extends BasePageObject {
 
-    private final WebDriver driver = getDriver();
     private final LoginPageObject loginPageObject;
 
     public Login_Steps(LoginPageObject loginPageObject) {
@@ -47,10 +43,7 @@ public class Login_Steps extends BasePageObject {
     @Then("I should see the following validation message {}")
     public void i_should_see_the_following_validation_message(String validationMessage) {
         System.out.println("Validation message:" + validationMessage);
-        String alertText = driver.switchTo().alert().getText();
-        Assert.assertEquals(alertText, validationMessage);
-        alertHandler(driver);
-        acceptAlert();
+        loginPageObject.validateSuccessLoginMessage(validationMessage);
     }
 }
 
