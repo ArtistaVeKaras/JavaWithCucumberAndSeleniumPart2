@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import utils.GlobalVariables;
 
 import java.time.Duration;
 
@@ -42,7 +43,7 @@ public class BasePageObject {
     // Alert handler
     public void alertHandler(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
     }
 
     // Accepts a simple alert
@@ -53,7 +54,7 @@ public class BasePageObject {
     }
 
     public void waitForAlertAndValidateText(String expectedText){
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.alertIsPresent());
         String alertText = getDriver().switchTo().alert().getText();
         Assert.assertEquals(alertText, expectedText);
@@ -68,33 +69,44 @@ public class BasePageObject {
 
     // Send keys to an element
     public void sendKeys(By by, String textToSend) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by)).sendKeys(textToSend);
     }
 
     // Send keys to an element
     public void sendKeys(WebElement element, String textToSend) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.sendKeys(textToSend);
     }
 
     // Clicks on an element
     public void waitForElementAndClick(By by) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(by)).click();
     }
 
     // Clicks on an element
+    public void waitFor(By by) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+    }
+
+    // Clicks on an element
+    public void waitForElementAndExtractText(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+        // Clicks on an element
     public void waitForElementAndClick(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 
     // Finds an element and extracts the text
     public String findElementAndGetText(By by) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         return element.getText();
     }

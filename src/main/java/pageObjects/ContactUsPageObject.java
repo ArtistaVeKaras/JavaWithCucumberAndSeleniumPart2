@@ -1,8 +1,10 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+import utils.GlobalVariables;
+
 
 public class ContactUsPageObject extends BasePageObject{
 
@@ -29,7 +31,7 @@ public class ContactUsPageObject extends BasePageObject{
     }
 
     public void navigateToContactUsPage(){
-        navigateToPage("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
+        navigateToPage(GlobalVariables.WEBDRIVER_UNIVERSITY_URL + "/Contact-Us/contactus.html");
     }
 
     // This does work but probably not the best way to do it
@@ -73,12 +75,12 @@ public class ContactUsPageObject extends BasePageObject{
         sendKeys(emailField, email);
     }
 
-    public void setMessage(String message){
+    public void setSpecificComment(String message){
         sendKeys(messageField, message);
     }
 
-//    public void validateTheThankYouMessage(String expectedMessage){
-//        findElementAndGetText(thankYouMessage);
-//    }
-
+    public void validateTheThankYouMessage(){
+        waitForElementAndExtractText(thankYouMessage);
+        Assert.assertEquals(thankYouMessage.getText(), "Thank You for your Message!");
+    }
 }

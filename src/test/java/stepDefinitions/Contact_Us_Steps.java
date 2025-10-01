@@ -68,7 +68,7 @@ public class Contact_Us_Steps extends BasePageObject {
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
         System.out.println("Entered comment: " + comment);
-        contactUsPageObject.setMessage(comment);
+        contactUsPageObject.setSpecificComment(comment);
     }
 
     @And("I click on Submit button")
@@ -79,7 +79,6 @@ public class Contact_Us_Steps extends BasePageObject {
 
     @Then("I should see a thank you message")
     public void i_should_see_a_thank_you_message() {
-        String messageText = findElementAndGetText(By.xpath("//h1"));
-        Assert.assertEquals(messageText, "Thank You for your Message!");
+       contactUsPageObject.validateTheThankYouMessage();
     }
 }
