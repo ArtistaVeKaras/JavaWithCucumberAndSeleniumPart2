@@ -13,12 +13,12 @@ Feature: Webdriver University - Contact Us Page
     And I click on Submit button
     Then I should see a thank you message
 
-  @regression
+  @smoke1
   Scenario: Verify Contact Us Page - Specific Data
     When I enter a specific first name akiira
     When I enter a specific last name corr
     When I enter a specific email address akiira_corr@blogs.com
-    When I enter a specific comment "How are you?"
+    When I enter a specific comment "How are you today?"
     And I click on Submit button
     Then I should see a thank you message
 

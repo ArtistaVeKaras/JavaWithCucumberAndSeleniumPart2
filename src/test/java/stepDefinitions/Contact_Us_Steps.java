@@ -7,69 +7,74 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pageObjects.BasePageObject;
+import pageObjects.ContactUsPageObject;
 
 
 public class Contact_Us_Steps extends BasePageObject {
 
+    private final ContactUsPageObject contactUsPageObject;
+
+    public Contact_Us_Steps(ContactUsPageObject contactUsSteps){
+        this.contactUsPageObject = contactUsSteps;
+    }
 
     @Given("I navigate to Webdriver University Contact Us Page")
     public void i_navigate_to_webdriver_university_contact_us_page() {
         System.out.println("Navigate to Contact Us page");
-        navigateToPage("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
+        contactUsPageObject.navigateToContactUsPage();
     }
 
     @When("I enter a unique first name")
     public void i_enter_a_unique_first_name() {
-        System.out.println("Entered first your name:");
-        sendKeys(By.name("first_name"), "FN_" + generateRandomInt(5));
+        System.out.println("Enter first name:");
+        contactUsPageObject.setFirstName();
     }
 
     @And("I enter a unique last name")
     public void i_enter_a_unique_last_name() {
-        System.out.println("Entered last your name:");
-        sendKeys(By.name("last_name"), "LN_" + generateRandomInt(5));
+        System.out.println("Enter last name:");
+        contactUsPageObject.setLastName();
     }
 
     @And("I enter a unique email")
     public void i_enter_a_unique_email() {
-        System.out.println("Entered your email:");
-        sendKeys(By.name("email"), "akiira_flat@gmail.com");
+        System.out.println("Enter your email:");
+        contactUsPageObject.setEmail("akiira_falt500@gmail.com");
     }
 
     @And("I enter a unique comment")
     public void i_enter_a_unique_comment() {
-        System.out.println("Entered comment");
-        sendKeys(By.name("message"),"Message: " + generateRandomString(20));
+        contactUsPageObject.setMessage();
     }
 
     @When("I enter a specific first name {word}")
     public void i_enter_a_specific_first_name(String firstName) {
-        System.out.println("Entered first name: " + firstName);
-        sendKeys(By.name("first_name"), firstName);
+        System.out.println("Enter specific first name: " + firstName);
+        contactUsPageObject.setSpecificFirstName(firstName);
     }
 
     @When("I enter a specific last name {word}")
     public void i_enter_a_specific_last_name(String lastName) {
-        System.out.println("Entered last name: " + lastName);
-        sendKeys(By.name("last_name"), lastName);
+        System.out.println("Enter specific last name: " + lastName);
+        contactUsPageObject.setSpecificLastName(lastName);
     }
 
     @When("I enter a specific email address {word}")
     public void i_enter_a_specific_email_address(String email) {
         System.out.println("Entered email: " + email);
-        sendKeys(By.name("email"), email);
+        contactUsPageObject.setSpecificEmail(email);
     }
 
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String comment) {
         System.out.println("Entered comment: " + comment);
-        sendKeys(By.name("message"), comment);
+        contactUsPageObject.setMessage(comment);
     }
 
     @And("I click on Submit button")
     public void i_click_on_submit_button() {
         System.out.println("Clicked submit button");
-        waitForElementAndClick(By.cssSelector("input[value='SUBMIT']"));
+        contactUsPageObject.clickSubmitButton();
     }
 
     @Then("I should see a thank you message")
