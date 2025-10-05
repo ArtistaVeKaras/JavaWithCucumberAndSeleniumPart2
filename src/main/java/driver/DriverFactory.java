@@ -13,6 +13,7 @@ import java.time.Duration;
 import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.GlobalVariables;
 
 public class DriverFactory {
 
@@ -66,7 +67,7 @@ public class DriverFactory {
 
         // Common configurations
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
 
         return driver;
     }
