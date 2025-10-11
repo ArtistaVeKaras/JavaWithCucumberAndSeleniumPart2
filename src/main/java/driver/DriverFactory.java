@@ -42,7 +42,6 @@ public class DriverFactory {
                 // Configure Chrome options
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
-                chromeOptions.addArguments("--start-maximized");
 
                 // Initialize ChromeDriver with options
                 driver = new ChromeDriver(chromeOptions);
@@ -53,7 +52,6 @@ public class DriverFactory {
 
                 // Configure Firefox options
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--start-maximized");
                 if (System.getenv("CI") != null) {
                     firefoxOptions.addArguments("--headless");
                 }
