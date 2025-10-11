@@ -3,9 +3,8 @@
 ## Overview
 
 `DriverFactory` is a utility class designed to manage WebDriver instances in a Selenium WebDriver test automation
-framework.
-It implements the Singleton and Factory design patterns to provide a centralized way to create, manage, and dispose of
-WebDriver instances.
+framework. It implements the Singleton and Factory design patterns to provide a centralized way to create, manage, 
+and dispose of WebDriver instances.
 
 ## Purpose
 
@@ -132,4 +131,12 @@ public void tearDown() {
 
 - **Browser Not Starting**: Check WebDriverManager setup and browser compatibility
 - **Thread Issues**: Ensure proper cleanup in `@After` methods
-- **Configuration**: Verify browser options if experiencing unexpected behavior
+- **Configuration**: Verify browser options if experiencing unexpected behaviorFirefoxDriver
+
+## Resources
+
+- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager)
+- [ThreadLocal](https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html)
+- [Factory Method Pattern](https://refactoring.guru/design-patterns/factory-method)
+- [Singleton Pattern](https://refactoring.guru/design-patterns/singleton)
+

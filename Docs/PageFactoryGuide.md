@@ -9,13 +9,15 @@
 
 ## Introduction
 
-PageFactory is a class in Selenium WebDriver that supports the Page Object Model pattern. It helps initialize WebElements of a Page Object without explicitly using `findElement` or `findElements`.
+PageFactory is a class in Selenium WebDriver that supports the Page Object Model pattern. It helps initialize WebElements 
+of a Page Object without explicitly using `findElement` or `findElements`.
 
 ## Beginner's Guide
 
 ### What is PageFactory?
 
-PageFactory is a factory class that helps initialize WebElements in Page Objects using `@FindBy` annotations. It makes your test code more readable and maintainable.
+PageFactory is a factory class that helps initialize WebElements in Page Objects using `@FindBy` annotations. 
+It makes your test code more readable and maintainable.
 
 ### Basic Example
 

@@ -132,11 +132,10 @@ The -U flag forces Maven to update snapshots and releases
 mvn clean install -U
 ```
 
-
 ## Parallel Test Execution Notes
 
-Regarding parallel execution being slower, this is actually expected in some Selenium WebDriver scenarios, and here's
-why:
+Regarding parallel execution being slower, this is actually expected in some Selenium WebDriver scenarios,
+and here's why:
 
 1. Resource Contention:
     * Each parallel test needs its own browser instance
@@ -160,7 +159,7 @@ To improve parallel execution:
 Find the sweet spot for thread count. Try adding this to your testng.xml:
 
 ```java
-<suite name="TestSuite"parallel="methods"thread-count="3">
+<suite name="TestSuite" parallel="methods" thread-count="3">
 ```
 
 ## Troubleshooting

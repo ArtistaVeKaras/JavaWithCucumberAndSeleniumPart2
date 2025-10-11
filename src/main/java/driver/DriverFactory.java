@@ -58,7 +58,7 @@ public class DriverFactory {
                     firefoxOptions.addArguments("--headless");
                 }
 
-                // Initialize FirefoxDriver with options
+                // Initialize GekoDriver with options
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
