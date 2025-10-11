@@ -53,6 +53,7 @@ public class BasePageObject {
         alert.accept();
     }
 
+    // Waits for an alert and validates its text
     public void waitForAlertAndValidateText(String expectedText){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.alertIsPresent());
@@ -97,7 +98,8 @@ public class BasePageObject {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
-        // Clicks on an element
+
+    // Clicks on an element
     public void waitForElementAndClick(WebElement element) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(GlobalVariables.DEFAULT_EXPLICIT_TIMEOUT));
         wait.until(ExpectedConditions.elementToBeClickable(element));
